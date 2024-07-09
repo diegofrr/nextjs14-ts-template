@@ -1,11 +1,7 @@
 import { useState } from 'react';
-import type { ReduxState } from '../interfaces/ReduxState';
-import { useDispatch, useSelector } from 'react-redux';
-import { actions } from '@/store/modules/auth/reducer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { z } from 'zod';
-import { toast } from 'sonner';
 import { useTheme } from '@/hooks';
 
 const userSchema = z.object({
@@ -20,16 +16,7 @@ export default function Home() {
   const [nome, setNome] = useState<string>('');
   const [error, setError] = useState<z.ZodError>();
 
-  const { user } = useSelector((state: ReduxState) => state.authReducer);
   const { toggleTheme, anotherTheme } = useTheme();
-
-  const dispatch = useDispatch();
-
-  const handleSetName = () => {
-    toast.success('Nome alterado com sucesso!');
-    if (error) return;
-    dispatch(actions.setUsername(nome));
-  };
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -43,8 +30,6 @@ export default function Home() {
 
   return (
     <main className="flex h-dvh w-dvw flex-col items-center justify-center gap-2">
-      <h1>{user.name}</h1>
-
       <Input
         value={nome}
         type="text"
@@ -58,10 +43,6 @@ export default function Home() {
           {error?.errors.map((err) => <p key={err.message}>{err.message}</p>)}
         </div>
       )}
-
-      <Button disabled={!!error || !nome} onClick={handleSetName}>
-        Alterar nome
-      </Button>
 
       <Button className="italic" onClick={toggleTheme}>
         Alterar tema para {anotherTheme}
