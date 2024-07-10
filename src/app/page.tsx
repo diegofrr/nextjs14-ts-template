@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -44,9 +46,7 @@ export default function Home() {
         </div>
       )}
 
-      <Button className="italic" onClick={toggleTheme}>
-        Alterar tema para {anotherTheme}
-      </Button>
+      <Button onClick={toggleTheme}>Toggle to {anotherTheme}</Button>
     </main>
   );
 }
