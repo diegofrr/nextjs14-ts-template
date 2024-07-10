@@ -1,8 +1,8 @@
 'use client';
 
-import type { LoadUserList } from '@/components/user-list/contracts';
-import type { User } from '@/components/user-list/types';
-import { UserList } from '@/components/user-list/user-list';
+import type { LoadUserList } from '@/components/UserList/contracts';
+import type { User } from '@/components/UserList/types';
+import { UserList } from '@/components/UserList/user-list';
 
 import { HttpClient } from '@/interfaces';
 import HttpClientAdapter from '@/http/adapters';
