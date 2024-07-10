@@ -5,6 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { z } from 'zod';
 import { useTheme } from '@/hooks';
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from '@/components/ui/context-menu';
 
 const userSchema = z.object({
   name: z
@@ -31,22 +37,38 @@ export default function Home() {
   };
 
   return (
-    <main className="flex h-dvh w-dvw flex-col items-center justify-center gap-2">
-      <Input
-        value={nome}
-        type="text"
-        onChange={handleChangeInput}
-        placeholder="Nome"
-        className="max-w-64"
-      />
+    <ContextMenu>
+      <ContextMenuTrigger>
+        <main className="flex h-dvh w-dvw flex-col items-center justify-center gap-2">
+          <Input
+            value={nome}
+            type="text"
+            onChange={handleChangeInput}
+            placeholder="Nome"
+            className="max-w-64"
+          />
 
-      {nome && (
-        <div className="flex w-64 flex-col gap-1 text-sm text-destructive">
-          {error?.errors.map((err) => <p key={err.message}>{err.message}</p>)}
-        </div>
-      )}
+          {nome && (
+            <div className="flex w-64 flex-col gap-1 text-sm text-destructive">
+              {error?.errors.map((err) => (
+                <p key={err.message}>{err.message}</p>
+              ))}
+            </div>
+          )}
 
-      <Button onClick={toggleTheme}>Toggle to {anotherTheme}</Button>
-    </main>
+          <ContextMenu>
+            <ContextMenuTrigger>
+              <Button onClick={toggleTheme}>Toggle to {anotherTheme}</Button>
+            </ContextMenuTrigger>
+            <ContextMenuContent>
+              <ContextMenuItem>Clique no botão</ContextMenuItem>
+            </ContextMenuContent>
+          </ContextMenu>
+        </main>
+      </ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuItem>Testando</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
   );
 }

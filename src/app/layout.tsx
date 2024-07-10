@@ -5,6 +5,7 @@ import './globals.css';
 
 import Providers from './providers';
 import { cn } from '@/lib/utils';
+import Scripts from './scripts';
 
 const APP_NAME = 'NJS App';
 const APP_DESCRIPTION = 'Next.js PWA';
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#FFFFFF',
+  themeColor: '#000',
 };
 
 export default function RootLayout({
@@ -40,6 +41,7 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={cn('font-sans', GeistSans.variable)}>
         <Providers>{children}</Providers>
+        <Scripts />
       </body>
     </html>
   );
